@@ -1,0 +1,23 @@
+// les couleurs customisées de Bootstrap
+
+$navbar: #313131;
+$main: #191919;
+
+$custom-theme-colors: (
+  "navbar": $navbar,
+  "main": $main,
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+@each $key, $val in $custom-theme-colors {
+  .text-#{$key} {
+    color: $val;
+  }
+  .bg-#{$key} {
+    background-color: $val;
+  }
+  .border-#{$key} {
+    border-color: $val;
+  }
+}
