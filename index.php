@@ -31,6 +31,8 @@ try {
                         break;
                     case "updatearticle":
                         $articlesController->updateArticle();
+                    case "deletearticle":
+                        $articlesController->deleteArticle();
                     default:
                         $pageController->blogPage();
                         break;

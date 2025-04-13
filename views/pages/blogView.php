@@ -47,11 +47,9 @@ foreach ($articles as $article) :
         <?php
         if (isset($_SESSION['admin'])) : ?>
             <button class='btn btn-outline-light' id="updateArticleBtn_<?= $article['id'] ?>">Modifier</button>
-
-            <form action="blog/deletearticle" method="POST">
-                <input type="hidden" name="id" value="<?= $article['id'] ?>">
-                <button type='submit' class='btn btn-outline-light'>Supprimer</button>
-            </form>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteArticleModal">
+                Supprimer l'article
+            </button>
 
             <div class="container d-flex justify-content-end">
                 <button style="display: none;" class="btn btn-outline-light my-3"
@@ -67,6 +65,8 @@ foreach ($articles as $article) :
                 <button type="submit" class="btn btn-outline-light"
                     id="validUpdateArticleBtn_<?= $article['id'] ?>">Valider</button>
             </form>
+
     <?php endif;
-    endforeach; ?>
+    endforeach;
+    require_once 'views/components/deleteArticleModal.php' ?>
     </div>

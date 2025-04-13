@@ -59,7 +59,7 @@ tinymce.init({
       };
 
       // 🎯 Ajout de la gestion de la progression de l'upload
-      req.upload.onprogress = function (e) {
+      req.upload.onprogress = (e) => {
         if (e.lengthComputable) {
           // Calcul du pourcentage d'envoi
           const percent = (e.loaded / e.total) * 100;

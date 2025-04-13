@@ -28,4 +28,11 @@ class ArticlesModel extends PdoModel
         $req->closeCursor();
         return $result;
     }
+    public function deleteArticleDb($id)
+    {
+        $db = $this->setdb();
+        $req = $db->prepare('DELETE FROM articles WHERE id=?');
+        $result = $req->execute([$id]);
+        return $result;
+    }
 }

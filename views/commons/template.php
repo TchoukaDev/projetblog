@@ -17,7 +17,7 @@ require_once 'views/components/navbar_items.php';
     <h1>Romain WIRTH</h1>
     <h2>Développeur Full Stack en formation</h2>
 </header>
-<nav class="navbar bg-navbar navbar-dark navbar-expand">
+<nav class="navbar bg-navbar navbar-dark navbar-expand-sm">
     <div class="container">
         <div class="navbar-brand me-5">TchoukaDev</div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,6 +71,7 @@ endif
     <script>
         <?= require_once 'public/js/tiny.js'; ?>
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?= ROOT ?>public/js/main.js"></script>
 </body>
 

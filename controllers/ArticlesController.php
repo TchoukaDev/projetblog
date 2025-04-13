@@ -49,4 +49,22 @@ class ArticlesController extends PageController
             }
         }
     }
+    public function deleteArticle()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            if (!empty($_POST['id'])) {
+                $id = htmlspecialchars($_POST['id']);
+                $result = $this->articlesModel->deleteArticleDb($id);
+                if ($result === false) {
+                    $_SESSION['articlesError'] = "Erreur: Un problème est survenu lors de la supression de votre article";
+                    header("location:" . ROOT . "blog");
+                    exit();
+                } else {
+                    $_SESSION['articlesSuccess'] = "Votre article a été supprimé avec succès.";
+                    header("location:" . ROOT . "blog");
+                    exit();
+                }
+            }
+        }
+    }
 }
