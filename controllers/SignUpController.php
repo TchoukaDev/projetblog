@@ -50,7 +50,7 @@ class SignUpController extends PageController
             exit();
         } else {
             if (strlen($password) < 8) {
-                $_SESSION['signUpError'] = "Le mot de passe doit contenir au moins 8 caractères";
+                $_SESSION['signUpError'] = "Le mot de passe doit contenir au moins 8 caractères.";
                 header('location: signup');
                 exit();
             } else

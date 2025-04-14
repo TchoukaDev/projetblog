@@ -68,5 +68,7 @@ foreach ($articles as $article) :
 
     <?php endif;
     endforeach;
-    require_once 'views/components/deleteArticleModal.php' ?>
+    echo $deleteArticleModal;
+
+    ?>
     </div>

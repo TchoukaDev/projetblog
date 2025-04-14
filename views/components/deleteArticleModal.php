@@ -1,4 +1,5 @@
- <!-- Modal -->
+ <?php ob_start(); ?>
+
  <div class="modal fade" data-bs-backdrop="static" id="deleteArticleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
      <div class="modal-dialog">
          <div class="modal-content">
@@ -19,3 +20,5 @@
          </div>
      </div>
  </div>
+ <?php
+    $deleteArticleModal = ob_get_clean();

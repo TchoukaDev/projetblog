@@ -2,10 +2,14 @@
 
 $navbar: #313131;
 $main: #191919;
+$darkuielement: #222222;
+$lightuielement: #606060;
 
 $custom-theme-colors: (
   "navbar": $navbar,
   "main": $main,
+  "darkuielement": $darkuielement,
+  "lightuielement": $lightuielement,
 );
 
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);
@@ -21,3 +25,20 @@ $theme-colors: map-merge($custom-theme-colors, $theme-colors);
     border-color: $val;
   }
 }
+
+$utilities: (
+  "width": (
+    property: width,
+    class: w,
+    responsive: true,
+    values: (
+      25: 25%,
+      33: 33%,
+      50: 50%,
+      66: 66%,
+      75: 75%,
+      100: 100%,
+      auto: auto,
+    ),
+  ),
+);

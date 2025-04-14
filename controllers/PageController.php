@@ -23,14 +23,16 @@ class PageController
     }
     public function blogPage()
     {
+        require_once('views/components/deleteArticleModal.php');
         $articles = $this->articlesModel->getAllArticles();
-
         $datasPage = [
             "title" => "Blog",
             "view" => "views/pages/blogView.php",
             "layout" => "views/commons/template.php",
-            "articles" => $articles
+            "articles" => $articles,
+            "deleteArticleModal" => $deleteArticleModal
         ];
+
         Utilities::renderPage($datasPage);
     }
 

@@ -1,28 +1,31 @@
 <?php
-
 if (!isset($_SESSION['connected'])): ?>
+    <section class="container">
+        <div class="d-flex justify-content-center">
+            <form class=" bg-main shadowlight border border-light text-center p-5 rounded-3 w-75 w-xl-50 mt-5 mb-2" method="POST" action="index.php?page=login">
+                <h3 class="text-center mb-5 text-decoration-underline"> Connexion: </h3>
 
-    <form method="POST" action="index.php?page=login">
-        <h2>Se connecter</h2>
+                <p>
+                <div class="input-group mx-auto w-100 w-md-75 w-lg-50">
 
-        <p>
-            <label for="email">Email</label>
-            <span class="input-group-text">@</span>
-            <input type="email" name="email" id="email" class="form-control" required>
-        </p>
-        <p>
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" class="form-control" required>
-        </p>
-        <p>
-            <input type="submit" value="Se connecter">
-        </p>
-    </form>
+                    <input type="email" name="email" id="email" class="form-control  signUpInput" placeholder="Adresse email" required aria-label="Email">
+                    <span class="input-group-text">@</span>
+                </div>
+                </p>
+                <p>
+                    <input type="password" name="password" id="password" class="form-control m-auto w-100 w-md-75 w-lg-50 signUpInput" placeholder="Mot de passe" required aria-label="Mot de passe">
+                </p>
+                <p>
+                    <input class="btn btn-outline-light mt-4" type="submit" value="Se connecter">
+                </p>
+                <?php if (isset($_SESSION["loginError"])) : ?>
+                    <p class='text-danger'><?= $_SESSION['loginError'] ?></p>
+                <?php
+                    unset($_SESSION['loginError']);
+                endif; ?>
+            </form>
 
-<?php endif;
-
-if (isset($_SESSION["loginError"])) {
-    echo "<p class='text-danger'>" . $_SESSION['loginError'] . "</p>";
-    unset($_SESSION['loginError']);
-}
-?>
+        <?php endif;
+        ?>
+        </div>
+    </section>
