@@ -5,17 +5,17 @@ class ArticlesController extends PageController
 
     public function addArticle()
     {
-        $name = $firstName = $content = '';
 
         //validation du formulaire
-        $fields = ['name', 'first_name', 'content'];
+        $fields = ['title', 'name', 'first_name', 'content'];
         if (Utilities::validateForm($fields, 'articlesError', 'blog')) {
+            $title = htmlspecialchars($_POST['title']);
             $name = htmlspecialchars($_POST['name']);
             $firstName = htmlspecialchars($_POST['first_name']);
             $content = htmlspecialchars($_POST['content']);
 
             //ajout de l'article
-            $result = $this->articlesModel->addArticleDb($name, $firstName, $content);
+            $result = $this->articlesModel->addArticleDb($title, $name, $firstName, $content);
 
             //Affichage du résultat
             if ($result === false) {
@@ -32,12 +32,13 @@ class ArticlesController extends PageController
 
     public function updateArticle()
     {
-        $fields = ['content', 'id'];
+        $fields = ['title', 'content', 'id'];
         if (Utilities::validateForm($fields, 'articleError', 'blog')) {
+            $title = htmlspecialchars($_POST['title']);
             $content = htmlspecialchars($_POST['content']);
             $id = htmlspecialchars($_POST['id']);
 
-            $result = $this->articlesModel->updateArticleDb($content, $id);
+            $result = $this->articlesModel->updateArticleDb($title, $content, $id);
             if ($result === false) {
                 $_SESSION['articlesError'] = "Erreur: Un problème est survenu lors de la modification de votre article";
                 header("location:" . ROOT . "blog");

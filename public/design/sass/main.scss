@@ -10,24 +10,49 @@
   }
 }
 .btn-darkuielement {
-  border: 0.5px solid $light;
+  border-color: $light;
   &:hover {
     background-color: $light;
-    border-color: $light;
+    color: $darkuielement;
+    border: 1px solid $light;
+  }
+}
+.btn-lightuielement {
+  border-color: $light;
+  &:hover {
+    background-color: $light;
     color: $darkuielement;
     border: 1px solid $light;
   }
 }
 
-.btn-lightuielement {
-  border: 0.5px solid $light;
-  &:hover {
-    background-color: $light;
-    border-color: $light;
-    color: $lightuielement;
+.shadowlight {
+  box-shadow: 5px 5px 30px 0px rgba($light, 0.25);
+}
+
+.border-navbar {
+  border: 1px solid $navbar;
+}
+
+#loginTool {
+  @media (max-width: 991.8px) {
+    position: static;
   }
 }
 
-.shadowlight {
-  box-shadow: 10px 10px 20px 0px rgba($light, 0.25);
+.articleAuthor {
+  border-radius: 0.3rem 0.3rem 0rem 0rem;
+}
+
+.articleContent {
+  border-radius: 0rem 0.3rem 0.3rem 0.3rem;
+}
+
+.fit-content {
+  width: fit-content;
+}
+
+.addArticleLink {
+  text-decoration: none;
+  color: inherit;
 }

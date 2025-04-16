@@ -1,6 +1,6 @@
 <section class="container">
     <div class="d-flex justify-content-center">
-        <form class=" bg-main shadowlight border border-light text-center p-5 rounded-3 w-75 w-xl-50 mt-5 mb-2" method="POST" action="index.php?page=signup">
+        <form class=" bg-main shadowlight border border-lightuielement text-center p-5 rounded-3 w-75 w-xl-50 mt-5 mb-2" method="POST" action="index.php?page=signup">
             <h3 class="text-center mb-5 text-decoration-underline"> Inscription: </h3>
 
             <?php if (!isset($_SESSION['signUpSuccess'])) : ?>

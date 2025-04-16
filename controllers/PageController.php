@@ -5,11 +5,13 @@ class PageController
 
     public $usersModel;
     public $articlesModel;
+    public $reviewsModel;
 
     public function __construct()
     {
         $this->usersModel = new UsersModel;
         $this->articlesModel = new ArticlesModel;
+        $this->reviewsModel = new ReviewsModel;
     }
     public function homePage()
     {
@@ -23,14 +25,20 @@ class PageController
     }
     public function blogPage()
     {
-        require_once('views/components/deleteArticleModal.php');
         $articles = $this->articlesModel->getAllArticles();
+        $reviews = $this->reviewsModel->getArticleReviews();
+        require_once 'views/fragments/blog/deleteArticleModal.php';
+        require_once 'views/fragments/blog/deleteReviewModal.php';
+
+
         $datasPage = [
             "title" => "Blog",
             "view" => "views/pages/blogView.php",
             "layout" => "views/commons/template.php",
             "articles" => $articles,
-            "deleteArticleModal" => $deleteArticleModal
+            "reviews" => $reviews,
+            "deleteArticleModal" => $deleteArticleModal,
+            "deleteReviewModal" => $deleteReviewModal
         ];
 
         Utilities::renderPage($datasPage);

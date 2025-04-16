@@ -8,6 +8,7 @@ require_once 'controllers/Pagecontroller.php';
 require_once 'controllers/Utilities.php';
 require_once 'models/UsersModel.php';
 require_once 'models/ArticlesModel.php';
+require_once 'models/ReviewsModel.php';
 $pageController = new PageController();
 
 try {
@@ -24,15 +25,25 @@ try {
         case "blog":
             if (isset($url[1])) {
                 require_once 'controllers/ArticlesController.php';
+                require_once 'controllers/ReviewsController.php';
                 $articlesController = new ArticlesController();
+                $reviewsController = new ReviewsController();
                 switch ($url[1]) {
                     case "addarticle":
                         $articlesController->addArticle();
                         break;
                     case "updatearticle":
                         $articlesController->updateArticle();
+                        break;
                     case "deletearticle":
                         $articlesController->deleteArticle();
+                        break;
+                    case "addreview";
+                        $reviewsController->addReview();
+                        break;
+                    case "deletereview":
+                        $reviewsController->deleteReview();
+                        break;
                     default:
                         $pageController->blogPage();
                         break;
@@ -41,7 +52,6 @@ try {
                 $pageController->blogPage();
             }
             break;
-
         case "portfolio":
             $pageController->portfolioPage();
             break;

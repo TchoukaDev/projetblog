@@ -2,73 +2,192 @@
 
 
 
-<?php if (isset($_SESSION['admin'])): ?>
-    <div class="container d-flex justify-content-end">
-        <button style="display: none;" class="btn btn-outline-light my-3" id="closeAddArticleBtn">Fermer</button>
-    </div>
-    <form class="container" style="display: none;" id="addArticleForm" action="blog/addarticle" method="POST">
+<section class="mb-5" id="addArticleLink">
+    <!--Formulaire d'ajout d'article -->
+    <?php
+    if (isset($_SESSION['admin'])): ?>
+        <div class="container d-flex justify-content-end">
+            <button style="display: none;" class="btn btn-outline-light my-3" id="closeAddArticleBtn">Fermer</button>
+        </div>
+        <form class="container" style="display: none;" id="addArticleForm" action="blog/addarticle" method="POST">
+
+            <?php if (isset($_SESSION['firstName'])) : ?>
+                <input type="hidden" name="first_name" id="first_name" value="<?= $_SESSION['firstName'];
+                                                                            endif; ?>">
+                <?php if (isset($_SESSION['name'])) : ?>
+                    <input type="hidden" name="name" id="name" value="<?= $_SESSION['name'];
+                                                                    endif; ?>">
+                    <p>
+                        <label for="title" class="mb-1 p-2 text-decoration-underline">Choisir un titre: </label>
+                        <input type="text" class="form-control" name="title">
+                    </p>
+                    <p><textarea class="tiny" name="content"></textarea></p>
+                    <p><button type=" submit" class="btn btn-outline-light">Publier</button></p>
+        </form>
+        <?php
+        if (isset($_SESSION["articlesError"])) {
+            echo "<p class='text-danger text-center'>" . $_SESSION['articlesError'] . "</p>";
+            unset($_SESSION['articlesError']);
+        }
+        if (isset($_SESSION['articlesSuccess'])) {
+            echo "<p class='text-success text-center'>" . $_SESSION['articlesSuccess'] . "</p>";
+            unset($_SESSION['articlesSuccess']);
+        } ?>
 
 
-        <input type="hidden" name="first_name" id="first_name" value="<?php
-                                                                        if (isset($_SESSION['firstName'])) {
-                                                                            echo $_SESSION['firstName'];
-                                                                        } ?>">
-        <input type="hidden" name="name" id="name" value="<?php
-                                                            if (isset($_SESSION['name'])) {
-                                                                echo $_SESSION['name'];
-                                                            } ?>">
-        <textarea class="tiny" name="content"></textarea>
-        <button type="submit" class="btn btn-outline-light my-3">Publier</button>
-
-    </form>
-    <div class="container">
-        <button class="btn btn-outline-light m-3" id="addArticleBtn">Ajouter un article</button>
     <?php endif;
-if (isset($_SESSION["articlesError"])) {
-    echo "<p class='text-danger text-center'>" . $_SESSION['articlesError'] . "</p>";
-    unset($_SESSION['articlesError']);
-}
-if (isset($_SESSION['articlesSuccess'])) {
-    echo "<p class='text-success text-center'>" . $_SESSION['articlesSuccess'] . "</p>";
-    unset($_SESSION['articlesSuccess']);
-}
-foreach ($articles as $article) :
-    $date = new DateTime($article['creation_date']);
-    $dateFr = $date->format('d/m/Y H:i');
 
-    $content = html_entity_decode($article['content']);
+
+
+    foreach ($articles as $article):
+
+
+        // Conversion de la date puis affichage des articles
+
+        $articleDate = new DateTime($article['creation_date']);
+        $articleDateFr = $articleDate->format('d/m/Y H:i');
+        $articleContent = html_entity_decode($article['content']);
+
+        $lastArticle = end($articles);
 
     ?>
-        <div class="container my-5">
-            <p>Ecrit par: <?= $article['first_name'] . " " . $article['name'] ?></p>
-            <p>Créé le: <?= $dateFr ?> </p>
-            <?= $content ?>
+
+        <div class="container bg-main border border-lightuielement p-5 rounded-3 shadowlight">
+
+            <?php echo isset($_SESSION['admin']) ? "<div class='border border-borderbtn bg-navbar d-flex flex-column px-4 pb-4 pt-1 articleAuthor'>" : "<div class='border border-borderbtn bg-navbar d-flex flex-column p-4 articleAuthor'>";
+
+
+            //Buttons de modification et suppression de l'article
+            if (isset($_SESSION['admin'])) : ?>
+                <div class="align-self-end">
+                    <button type="button" class='btn btn-lightuielement border' id="updateArticleBtn_<?= $article['id'] ?>" title="Modifier l'article" data-bs-toggle="tooltip" data-bs-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M12.146.854a.5.5 0 0 1 .708 0l2.292 2.292a.5.5 0 0 1 0 .708l-9.5 9.5a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l9.5-9.5zM11.207 2L13 3.793 14.293 2.5 12.5.707 11.207 2zM10.5 2.707L2 11.207V13h1.793l8.5-8.5L10.5 2.707z" />
+                        </svg></button>
+                    <span title="Supprimer l'article" data-bs-toggle="tooltip" data-bs-placement="bottom"><button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#deleteArticleModal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5a.5.5 0 0 1 .5-.5H6h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5zM4.5 2.5A.5.5 0 0 1 5 2h6a.5.5 0 0 1 .5.5V3H14a.5.5 0 0 1 0 1h-1.132l-.858 9.171A1.5 1.5 0 0 1 10.516 14H5.484a1.5 1.5 0 0 1-1.494-1.829L3.132 4H2a.5.5 0 0 1 0-1h2.5v-.5z" />
+                            </svg>
+                        </button></span>
+                </div>
+            <?php endif; ?>
+            <div class="text-center px-5 py-3">
+                <h3><?= $article['title'] ?><br></h3>
+            </div>
+            <div class="d-flex justify-content-between px-5 ">
+                <p>Auteur: <?= $article['first_name'] . " " . $article['name'] ?></p><br>
+                <p>Publié le <?= $articleDateFr ?></p>
+            </div>
+
+        </div>
+
+        <div class=" d-flex flex-column border border-borderbtn bg-navbar mb-4 p-1 articleContent">
+            <div class='px-5 pt-5'>
+
+                <?= $articleContent ?>
+            </div>
+
         </div>
         <?php
         if (isset($_SESSION['admin'])) : ?>
-            <button class='btn btn-outline-light' id="updateArticleBtn_<?= $article['id'] ?>">Modifier</button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteArticleModal">
-                Supprimer l'article
-            </button>
-
+            <!-- Btn fermer textarea -->
             <div class="container d-flex justify-content-end">
-                <button style="display: none;" class="btn btn-outline-light my-3"
+                <button style="display: none;" class="btn btn-outline-light mb-3"
                     id="closeUpdateArticleBtn_<?= $article['id'] ?>">Fermer</button>
             </div>
 
+            <!-- Formulaire de modification -->
             <form style="display: none;" class="container"
                 action="blog/updatearticle"
                 id="updateArticleForm_<?= $article['id'] ?>"
                 method="POST">
                 <input type="hidden" name="id" value="<?= $article['id'] ?>">
-                <textarea class="tiny" name="content"><?= $content ?></textarea>
-                <button type="submit" class="btn btn-outline-light"
-                    id="validUpdateArticleBtn_<?= $article['id'] ?>">Valider</button>
+                <p>
+                    <label for="title" class="mb-1 p-2 text-decoration-underline">Choisir un titre: </label>
+                </p>
+                <p>
+                    <input type="text" class="form-control" name="title" value="<?= $article['title'] ?>">
+                </p>
+                <textarea class="tiny" name="content"><?= $articleContent ?></textarea>
+                <p></p><button type="submit" class="btn btn-outline-light"
+                    id="validUpdateArticleBtn_<?= $article['id'] ?>">Valider</button></p>
             </form>
 
-    <?php endif;
-    endforeach;
-    echo $deleteArticleModal;
+        <?php endif; ?>
 
-    ?>
-    </div>
+
+        <?php
+        // Formulaire ajout de commentaire
+        if (isset($_SESSION['connected'])) : ?>
+            <div class="container d-flex justify-content-end">
+                <button style="display: none;" class="btn btn-outline-light my-3" id="closeAddReviewBtn_<?= $article['id'] ?>">Fermer</button>
+            </div>
+            <form class="container" style="display: none;" id="addReviewForm_<?= $article['id'] ?>" action="blog/addreview" method="POST">
+
+                <?php if (isset($_SESSION['firstName'])) : ?>
+                    <input type="hidden" name="firstName" id="firstName" value="<?= $_SESSION['firstName'];
+                                                                            endif; ?>">
+                    <?php if (isset($_SESSION['name'])) : ?>
+                        <input type="hidden" name="name" id="name" value="<?= $_SESSION['name'];
+                                                                        endif; ?>">
+                        <p><input type="hidden" name="articleId" value="<?= $article['id'] ?>"> </p>
+                        <p><textarea class="tiny" name="content"></textarea></p>
+                        <p><button type="submit" class="btn btn-outline-light my-3">Publier</button></p>
+            </form>
+            <?php
+            if (isset($_SESSION["reviewsError"])) {
+                echo "<p class='text-danger text-center'>" . $_SESSION['reviewsError'] . "</p>";
+                unset($_SESSION['reviewsError']);
+            }
+            if (isset($_SESSION['reviewsSuccess'])) {
+                echo "<p class='text-success text-center'>" . $_SESSION['reviewsSuccess'] . "</p>";
+                unset($_SESSION['reviewsSuccess']);
+            } ?>
+
+            <!-- Boutons d'ouverture de textarea pour ajouter un commentaire -->
+            <div class="container">
+                <button class="btn btn-outline-light m-3" id="addReviewBtn_<?= $article['id'] ?>">Ajouter un commentaire</button>
+            <?php endif; ?>
+            </div>
+
+            <?php
+            // Filtrer les commentaires de l'article par article
+            $articleReviews = array_filter($reviews, function ($review) use ($article) {
+                return $review['article_id'] == $article['id'];
+            });
+
+            // Pour chaque commentaire de chaque article
+            foreach ($articleReviews as $review) :
+
+                $reviewDate = new DateTime($review['creation_date']);
+                $reviewDateFr = $reviewDate->format('d/m/Y H:i');
+                $reviewContent = html_entity_decode($review['content']); ?>
+
+                <!-- Affichage des commentaires -->
+
+                <div class="container my-5">
+                    <p>Posté par: <?= $review['first_name'] . " " . $review['name'] ?></p>
+                    <p>Le: <?= $reviewDateFr ?> </p>
+                    <p><?= $reviewContent ?></p>
+                    <?php
+
+                    // Btn supprimer
+                    if (isset($_SESSION['admin'])) : ?>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteReviewModal">
+                            Supprimer le commentaire
+                        </button>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+</section>
+<?php
+    endforeach; ?>
+
+<!-- Bouton d'ouverture textearea pour ajout d'article -->
+
+<div class="container mt-5 sticky-bottom text-end" id="divAddArticleBtn">
+    <button class="btn btn-lightuielement m-3 " id="addArticleBtn" onclick="location.href='#addArticleLink'">Ajouter un article</button>
+</div>
+<?php
+
+echo $deleteArticleModal;
+echo $deleteReviewModal;

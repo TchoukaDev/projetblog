@@ -7,7 +7,6 @@ class UsersModel extends PdoModel
         $db = $this->setdb();
         $req = $db->prepare('INSERT INTO users (name, first_name, email, password, is_Admin) VALUES (?,?,?,?,?)');
         $result =  $req->execute([$name, $firstName, $email, $password, $isAdmin]);
-        $req->closeCursor();
         return $result;
     }
 
@@ -16,8 +15,9 @@ class UsersModel extends PdoModel
         $db = $this->setdb();
         $req = $db->prepare('SELECT * FROM users');
         $req->execute();
+        $users = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
-        return $req;
+        return $users;
     }
 
     public function countEmail($email)

@@ -11,21 +11,18 @@ class ArticlesModel extends PdoModel
         $req->closeCursor();
         return $articles;
     }
-    public function addArticleDb($name, $firstName, $content)
+    public function addArticleDb($title, $name, $firstName, $content)
     {
         $db = $this->setdb();
-        $req = $db->prepare('INSERT INTO articles (name, first_name, content) VALUES (?,?,?)');
-        $result = $req->execute([$name, $firstName, $content]);
-        $req->closeCursor();
+        $req = $db->prepare('INSERT INTO articles (title, name, first_name, content) VALUES (?, ?,?,?)');
+        $result = $req->execute([$title, $name, $firstName, $content]);
         return $result;
     }
-    public function updateArticleDb($content, $id)
+    public function updateArticleDb($title, $content, $id)
     {
-
         $db = $this->setdb();
-        $req = $db->prepare('UPDATE articles SET content = ? WHERE id = ?');
-        $result = $req->execute([$content, $id]);
-        $req->closeCursor();
+        $req = $db->prepare('UPDATE articles SET title = ?, content = ? WHERE id = ?');
+        $result = $req->execute([$title, $content, $id]);
         return $result;
     }
     public function deleteArticleDb($id)
