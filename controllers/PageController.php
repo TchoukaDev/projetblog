@@ -29,6 +29,7 @@ class PageController
         $reviews = $this->reviewsModel->getArticleReviews();
         require_once 'views/fragments/blog/deleteArticleModal.php';
         require_once 'views/fragments/blog/deleteReviewModal.php';
+        require_once 'views/fragments/blog/allReviewsModal.php';
 
 
         $datasPage = [
@@ -38,7 +39,8 @@ class PageController
             "articles" => $articles,
             "reviews" => $reviews,
             "deleteArticleModal" => $deleteArticleModal,
-            "deleteReviewModal" => $deleteReviewModal
+            "deleteReviewModal" => $deleteReviewModal,
+            "allReviewsModal" => $allReviewsModal
         ];
 
         Utilities::renderPage($datasPage);

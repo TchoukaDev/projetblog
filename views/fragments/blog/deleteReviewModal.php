@@ -3,11 +3,11 @@
     foreach ($reviews as $review) :
     ?>
 
-     <div class="modal fade" data-bs-backdrop="static" id="deleteReviewModal" tabindex="-1" aria-labelledby="deleteReviewModal" aria-hidden="true">
+     <div class="modal fade" data-bs-backdrop="static" id="deleteReviewModal<?= $review['id'] ?>" tabindex="-1" aria-labelledby="deleteReviewModal<?= $review['id'] ?>" aria-hidden="true">
          <div class="modal-dialog">
              <div class="modal-content">
                  <div class="modal-header">
-                     <h1 class="modal-title fs-5" id="DeleteReviewModalLabel">Suppression du commentaire</h1>
+                     <h1 class="modal-title fs-5" id="DeleteReviewModalLabel<?= $review['id'] ?>">Suppression du commentaire</h1>
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                  <div class="modal-body">
@@ -23,7 +23,7 @@
              </div>
 
          </div>
-
-     <?php
+     </div>
+ <?php
     endforeach;
     $deleteReviewModal = ob_get_clean();

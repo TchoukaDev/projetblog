@@ -15,13 +15,15 @@ export function addArticle() {
     addArticleBtn.addEventListener("click", () => {
       addArticleForm.style.display = "block";
       divAddArticleBtn.style.display = "none";
-      closeAddArticleBtn.style.display = "block";
+      window.scrollTo({
+        top: addArticleForm.offsetTop,
+        behavior: "smooth",
+      });
     });
 
     closeAddArticleBtn.addEventListener("click", () => {
       addArticleForm.style.display = "none";
       divAddArticleBtn.style.display = "block";
-      closeAddArticleBtn.style.display = "none";
     });
   }
 }
@@ -48,14 +50,16 @@ export function updateArticle() {
     );
 
     // Ajout des écouteurs d'événements
-    updateArticleBtn.addEventListener("click", () => {
+    updateArticleBtn.addEventListener("click", (event) => {
+      event.preventDefault();
       form.style.display = "block";
       updateArticleBtn.style.display = "none";
       closeUpdateArticleBtn.style.display = "block";
       validUpdateArticleBtn.style.display = "block";
     });
 
-    closeUpdateArticleBtn.addEventListener("click", () => {
+    closeUpdateArticleBtn.addEventListener("click", (event) => {
+      event.preventDefault();
       form.style.display = "none";
       updateArticleBtn.style.display = "block";
       closeUpdateArticleBtn.style.display = "none";

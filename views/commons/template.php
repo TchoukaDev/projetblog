@@ -49,15 +49,15 @@ require_once 'views/fragments/navbar_items.php';
                 <div class="text-light">
                     Bonjour <?= $_SESSION['firstName']; ?>
                 </div>
-                <a href="logout" class="btn btn-lightuielement border border-lightuielement fst-normal">Se déconnecter</a>
+                <a href="logout" class="btn btn-lightuielement border border-lightbg fst-normal">Se déconnecter</a>
             </div>
         </div>
     <?php
     else: ?>
         <div class="container d-flex justify-content-sm-end justify-content-center mt-4">
             <div class=" btn-group w-25 ">
-                <a href="login" class="btn d-flex justify-content-center align-items-center border border-borderbtn  btn-lightuielement">Se connecter</a>
-                <a href="signup" class="btn d-flex justify-content-center align-items-center border border-borderbtn btn-darkuielement">S'inscrire</a>
+                <a href="login" class="btn d-flex justify-content-center align-items-center border border-lightbg btn-lightuielement">Se connecter</a>
+                <a href="signup" class="btn d-flex justify-content-center align-items-center border border-lightbg btn-darkuielement">S'inscrire</a>
             </div>
         </div>
     <?php

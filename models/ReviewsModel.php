@@ -5,7 +5,7 @@ class ReviewsModel extends PdoModel
     public function getArticleReviews()
     {
         $db = $this->setdb();
-        $req = $db->prepare("SELECT * from reviews");
+        $req = $db->prepare("SELECT * from reviews ORDER BY creation_date DESC");
         $req->execute([]);
         $reviews = $req->fetchAll(PDO::FETCH_ASSOC);
         $req->closeCursor();
