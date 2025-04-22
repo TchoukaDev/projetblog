@@ -8,7 +8,9 @@ require_once 'controllers/Pagecontroller.php';
 require_once 'controllers/Utilities.php';
 require_once 'models/UsersModel.php';
 require_once 'models/ArticlesModel.php';
-require_once 'models/ReviewsModel.php';
+require_once 'models/ArticleReviewsModel.php';
+require_once 'models/ProjectsModel.php';
+require_once 'models/ProjectsReviewsModel.php';
 $pageController = new PageController();
 
 try {
@@ -25,9 +27,9 @@ try {
         case "blog":
             if (isset($url[1])) {
                 require_once 'controllers/ArticlesController.php';
-                require_once 'controllers/ReviewsController.php';
+                require_once 'controllers/ArticleReviewsController.php';
                 $articlesController = new ArticlesController();
-                $reviewsController = new ReviewsController();
+                $reviewsController = new ArticleReviewsController();
                 switch ($url[1]) {
                     case "addarticle":
                         $articlesController->addArticle();
@@ -38,11 +40,11 @@ try {
                     case "deletearticle":
                         $articlesController->deleteArticle();
                         break;
-                    case "addreview";
-                        $reviewsController->addReview();
+                    case "addarticlereview";
+                        $reviewsController->addArticleReview();
                         break;
-                    case "deletereview":
-                        $reviewsController->deleteReview();
+                    case "deletearticlereview":
+                        $reviewsController->deleteArticleReview();
                         break;
                     default:
                         $pageController->blogPage();
@@ -53,7 +55,34 @@ try {
             }
             break;
         case "portfolio":
-            $pageController->portfolioPage();
+            if (isset($url[1])) {
+                require_once 'controllers/ProjectsController.php';
+                require_once 'controllers/ProjectReviewsController.php';
+                $projectsController = new ProjectsController();
+                $reviewsController = new ProjectReviewsController;
+                switch ($url[1]) {
+                    case "addproject":
+                        $projectsController->addProject();
+                        break;
+                    case "updateproject":
+                        $projectsController->updateProject();
+                        break;
+                    case "deleteproject":
+                        $projectsController->deleteProject();
+                        break;
+                    case "addprojectreview":
+                        $reviewsController->addProjectReview();
+                        break;
+                    case "deleteprojectreview":
+                        $reviewsController->deleteProjectReview();
+                        break;
+                    default:
+                        $pageController->portfolioPage();
+                        break;
+                }
+            } else {
+                $pageController->portfolioPage();
+            }
             break;
         case "signup":
             require "controllers/signUpController.php";
