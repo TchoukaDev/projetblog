@@ -1,21 +1,13 @@
 // les couleurs customisées de Bootstrap
 
-$navbar: #313131;
-$main: #191919;
-$darkuielement: #222222;
-$lightuielement: #606060;
-$borderbtn: #494844;
-$lightbg: #7b7b7b;
-$light2: #b4b4b4;
-
 $custom-theme-colors: (
-  "navbar": $navbar,
-  "main": $main,
-  "darkuielement": $darkuielement,
-  "lightuielement": $lightuielement,
-  "borderbtn": $borderbtn,
-  "lightbg": $lightbg,
-  "light2": $light2,
+  "navbar": #313131,
+  "main": #191919,
+  "darkuielement": #222222,
+  "lightuielement": #606060,
+  "borderbtn": #484848,
+  "lightbg": #7b7b7b,
+  "light2": #b4b4b4,
 );
 
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);

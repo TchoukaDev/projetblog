@@ -78,13 +78,11 @@ require_once 'views/fragments/navbar_items.php';
         </div>
     </footer>
 
-    <script src="public/js/tooltip.js">
-
-    </script>
+    <script src="public/js/tooltip.js"></script>
     <script src="public/js/tiny.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="public/js/main.js" type="module"></script>
-    <script src="public/js/article.js" type="module"></script>
+    <script src="public/js/content.js" type="module"></script>
     <script src="public/js/review.js" type="module"></script>
 
 </body>

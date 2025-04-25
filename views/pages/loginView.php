@@ -15,6 +15,7 @@ if (!isset($_SESSION['connected'])): ?>
                 <p>
                     <input type="password" name="password" id="password" class="form-control m-auto w-100 w-md-75 w-lg-50 signUpInput" placeholder="Mot de passe" required aria-label="Mot de passe">
                 </p>
+                <label for="autoLogin">Se souvenir de moi</label><input type="checkbox" name="autoLogin" id="autoLogin" checked class="ms-2">
                 <p>
                     <input class="btn btn-outline-light mt-4" type="submit" value="Se connecter">
                 </p>

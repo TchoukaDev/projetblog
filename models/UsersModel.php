@@ -2,11 +2,11 @@
 require_once 'PdoModel.php';
 class UsersModel extends PdoModel
 {
-    public function createUser($name, $firstName, $email, $password, $isAdmin)
+    public function createUser($name, $firstName, $email, $password, $secret, $isAdmin)
     {
         $db = $this->setdb();
-        $req = $db->prepare('INSERT INTO users (name, first_name, email, password, is_Admin) VALUES (?,?,?,?,?)');
-        $result =  $req->execute([$name, $firstName, $email, $password, $isAdmin]);
+        $req = $db->prepare('INSERT INTO users (name, first_name, email, password, secret, is_Admin) VALUES (?,?,?,?,?,?)');
+        $result =  $req->execute([$name, $firstName, $email, $password, $secret, $isAdmin]);
         return $result;
     }
 
@@ -35,6 +35,16 @@ class UsersModel extends PdoModel
         $db = $this->setdb();
         $req = $db->prepare('SELECT * from users WHERE email=? ');
         $req->execute([$email]);
+        $user = $req->fetch(PDO::FETCH_ASSOC);
+        $req->closeCursor();
+        return $user;
+    }
+
+    public function selectUserbySecret($secret)
+    {
+        $db = $this->setdb();
+        $req = $db->prepare('SELECT * FROM users where secret = ?');
+        $req->execute([$secret]);
         $user = $req->fetch(PDO::FETCH_ASSOC);
         $req->closeCursor();
         return $user;

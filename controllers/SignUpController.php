@@ -23,7 +23,8 @@ class SignUpController extends PageController
             if ($this->validatePassword($password, $password2)) {
                 $password = $this->hashPassword($password);
             }
-            $this->addUser($name, $firstName, $email, $password);
+            $secret = password_hash($email, PASSWORD_DEFAULT);
+            $this->addUser($name, $firstName, $email, $password, $secret);
         }
     }
 
@@ -65,11 +66,11 @@ class SignUpController extends PageController
     }
 
     //ajouter l'utilisateur
-    private function addUser($name, $firstName, $email, $password)
+    private function addUser($name, $firstName, $email, $password, $secret)
     {
         require_once 'models/UsersModel.php';
         $isAdmin = $name === "admin" && $firstName === "admin" ? 1 : 0;
-        $result = $this->usersModel->createUser($name, $firstName, $email, $password, $isAdmin);
+        $result = $this->usersModel->createUser($name, $firstName, $email, $password, $secret, $isAdmin);
         if ($result === false) {
             $_SESSION['signUpError'] = 'Erreur: Votre inscription n\'a pas pu être finalisée';
         } else {

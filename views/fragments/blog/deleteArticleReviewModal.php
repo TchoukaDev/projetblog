@@ -3,11 +3,11 @@
     foreach ($reviews as $review) :
     ?>
 
-     <div class="modal fade" data-bs-backdrop="static" id="deleteReviewModal<?= $review['id'] ?>" tabindex="-1" aria-labelledby="deleteReviewModal<?= $review['id'] ?>" aria-hidden="true">
+     <div class="modal fade" data-bs-backdrop="static" id="deleteArticleReviewModal<?= $review['id'] ?>" tabindex="-1" aria-labelledby="deleteArticleReviewModal<?= $review['id'] ?>" aria-hidden="true">
          <div class="modal-dialog">
              <div class="modal-content">
                  <div class="modal-header">
-                     <h1 class="modal-title fs-5" id="DeleteReviewModalLabel<?= $review['id'] ?>">Suppression du commentaire</h1>
+                     <h1 class="modal-title fs-5" id="DeleteArticleReviewModalLabel<?= $review['id'] ?>">Suppression du commentaire</h1>
                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                  </div>
                  <div class="modal-body">
@@ -15,7 +15,7 @@
                  </div>
                  <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                     <form action="blog/deletereview" method="POST">
+                     <form action="blog/deletearticlereview" method="POST">
                          <input type="hidden" name="id" value="<?= $review['id'] ?>">
                          <button type='submit' class='btn btn-primary'>Confirmer</button>
                      </form>
@@ -26,4 +26,4 @@
      </div>
  <?php
     endforeach;
-    $deleteReviewModal = ob_get_clean();
+    $deleteArticleReviewModal = ob_get_clean();

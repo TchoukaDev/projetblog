@@ -1,14 +1,14 @@
 .signUpInput {
   &::placeholder {
     background-color: $light;
-    color: $navbar;
+    color: map-get($custom-theme-colors, navbar);
   }
 }
 .btn-darkuielement {
   border-color: $light;
   &:hover {
     background-color: $light;
-    color: $darkuielement;
+    color: map-get($custom-theme-colors, darkuielement);
     border: 1px solid $light;
   }
 }
@@ -16,7 +16,7 @@
   border-color: $light;
   &:hover {
     background-color: $light;
-    color: $darkuielement;
+    color: map-get($custom-theme-colors, darkuielement);
     border: 1px solid $light;
   }
 }
@@ -26,7 +26,7 @@
 }
 
 .border-bottom-navbar {
-  border-bottom: 1px solid $navbar;
+  border-bottom: 1px solid map-get($custom-theme-colors, navbar);
 }
 
 #loginTool {
@@ -61,5 +61,17 @@
 }
 
 .allReviews {
-  background-color: $navbar !important;
+  background-color: map-get($custom-theme-colors, navbar) !important;
+}
+
+#themeButton {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  cursor: pointer;
+  margin-left: 15px;
 }

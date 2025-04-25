@@ -19,8 +19,15 @@ class LoginController extends PageController
             Utilities::validateEmail($email, 'loginError', 'login');
             $this->checkEmail($email);
             if ($this->checkPassword($email, $password)) {
+                $user = $this->usersModel->selectUserbyEmail($email);
                 $this->openSessions($email);
+
+                if (isset($_POST['autoLogin'])) {
+                    $this->setAutoLogin($user['secret']);
+                }
             }
+            header('location:login');
+            exit();
         }
     }
 
@@ -60,7 +67,13 @@ class LoginController extends PageController
         if ($isAdmin === 1) {
             $_SESSION['admin'] = true;
         }
-        header('location:login');
-        exit();
+    }
+
+    private function setAutoLogin($secret)
+    {
+        error_log('Tentative de création du cookie avec secret: ' . $secret);
+        if (!empty($secret)) {
+            setcookie("autoLogin", $secret, time() + 365 * 24 * 3600, '/', "", false, true);
+        }
     }
 }

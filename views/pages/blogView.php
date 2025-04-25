@@ -74,7 +74,7 @@
                         <?php
                         //Buttons de modification et suppression de l'article
                         if (isset($_SESSION['admin'])) : ?>
-                            <div class="text-end">
+                            <div class="text-end p-1">
                                 <button type="button" class='btn btn-lightuielement border' id="updateArticleBtn_<?= $article['id'] ?>" title="Modifier l'article" data-bs-toggle="tooltip" data-bs-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                         <path d="M12.146.854a.5.5 0 0 1 .708 0l2.292 2.292a.5.5 0 0 1 0 .708l-9.5 9.5a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l9.5-9.5zM11.207 2L13 3.793 14.293 2.5 12.5.707 11.207 2zM10.5 2.707L2 11.207V13h1.793l8.5-8.5L10.5 2.707z" />
                                     </svg></button>
@@ -85,7 +85,7 @@
                                     </button></span>
                             </div>
                         <?php endif; ?>
-                        <div class="text-center px-5 py-3">
+                        <div class="text-center px-5 py-3 mt-1">
                             <h3><?= $article['title'] ?><br></h3>
                         </div>
                         <div class="d-flex justify-content-between px-5 ">
@@ -136,10 +136,10 @@
                     }); ?>
 
                     <div class="d-flex flex-column bg-darkuielement rounded-4 border border-lightuielement w-75 align-self-center">
-                        <h4 class="px-5 py-3 text-decoration-underline text-light2 text-center">Commentaires:</h4>
+                        <p class="px-5 py-3 text-decoration-underline text-light2 text-center">Commentaires:</p>
 
                         <?php if (count($articleReviews) === 0) : ?>
-                            <div class="px-5 py-3 d-flex flex-column justify-content-start border border-navbar text-light2">
+                            <div class="px-5 py-3 d-flex flex-column justify-content-start border-top border-navbar text-light2">
                                 Il n'y a aucun commentaire.
                             </div>
                         <?php else: ?>
@@ -153,7 +153,7 @@
 
                                 <!-- Affichage des commentaires -->
 
-                                <div class="px-5 py-3 d-flex flex-column justify-content-start border border-navbar">
+                                <div class="px-5 py-3 d-flex flex-column justify-content-start border-top border-navbar">
                                     <div class="d-flex justify-content-between text-light2">
                                         <p>Posté par: <?= $review['first_name'] . " " . $review['name'] ?></p>
                                         <p>Le: <?= $reviewDateFr ?> </p>
@@ -164,7 +164,7 @@
 
                                     // Btn supprimer
                                     if (isset($_SESSION['admin'])) : ?>
-                                        <span class="align-self-end" title="Supprimer l'article" data-bs-toggle="tooltip" data-bs-placement="bottom"><button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#deleteReviewModal<?= $review['id'] ?>">
+                                        <span class="align-self-end" title="Supprimer le commentaire" data-bs-toggle="tooltip" data-bs-placement="bottom"><button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#deleteArticleReviewModal<?= $review['id'] ?>">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                                     <path d="M5.5 5.5a.5.5 0 0 1 .5-.5H6h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5zM4.5 2.5A.5.5 0 0 1 5 2h6a.5.5 0 0 1 .5.5V3H14a.5.5 0 0 1 0 1h-1.132l-.858 9.171A1.5 1.5 0 0 1 10.516 14H5.484a1.5 1.5 0 0 1-1.494-1.829L3.132 4H2a.5.5 0 0 1 0-1h2.5v-.5z" />
                                                 </svg>
@@ -179,18 +179,18 @@
                     </div>
                     <!-- Boutons d'ouverture de textarea pour ajouter un commentaire -->
                     <div class="text-center">
-                        <button type="button" class="btn btn-lightuielement m-3" id="addReviewBtn_<?= $article['id'] ?>">Ajouter un commentaire</button>
+                        <button type="button" class="btn btn-lightuielement m-3" id="addArticleReviewBtn_<?= $article['id'] ?>">Ajouter un commentaire</button>
 
-                        <button type="button" class="btn btn-outline-light m-3" data-bs-toggle="modal" data-bs-target="#allReviewsModal<?= $article['id'] ?>">Voir tous les commentaires (<?= count($articleReviews) ?>)</button>
+                        <button type="button" class="btn btn-outline-light m-3" data-bs-toggle="modal" data-bs-target="#allArticleReviewsModal<?= $article['id'] ?>">Voir tous les commentaires (<?= count($articleReviews) ?>)</button>
                     </div>
 
                     <?php
                     // Formulaire ajout de commentaire
                     if (isset($_SESSION['connected'])) : ?>
                         <div class="container d-flex justify-content-end">
-                            <button style="display: none;" class="btn-close btn-close-white border border-navbar" title="Fermer l'éditeur de texte" data-bs-toggle="tooltip" data-bs-placement="right" id="closeAddReviewBtn_<?= $article['id'] ?>"></button>
+                            <button style="display: none;" class="btn-close btn-close-white border border-navbar" title="Fermer l'éditeur de texte" data-bs-toggle="tooltip" data-bs-placement="right" id="closeAddArticleReviewBtn_<?= $article['id'] ?>"></button>
                         </div>
-                        <form class="container" style="display: none;" id="addReviewForm_<?= $article['id'] ?>" action="blog/addreview" method="POST">
+                        <form class="container" style="display: none;" id="addArticleReviewForm_<?= $article['id'] ?>" action="blog/addarticlereview" method="POST">
 
                             <?php if (isset($_SESSION['firstName'])) : ?>
                                 <input type="hidden" name="firstName" id="firstName" value="<?= $_SESSION['firstName'];
@@ -220,7 +220,7 @@
     <?php
 
     echo $deleteArticleModal;
-    echo $deleteReviewModal;
-    echo $allReviewsModal; ?>
+    echo $deleteArticleReviewModal;
+    echo $allArticleReviewsModal; ?>
 
 </main>

@@ -1,28 +1,32 @@
-export function addReview() {
-  // Gestion des formulaires de mise à jour des articles
-  const addReviewForms = document.querySelectorAll('[id^="addReviewForm_"]');
+export class Review {
+  addReview(ReviewFormId, addReviewBtnId, closeAddReviewBtnId) {
+    // Gestion des formulaires de mise à jour des Projets
+    const addReviewForms = document.querySelectorAll(`[id^="${ReviewFormId}"]`);
 
-  addReviewForms.forEach((form) => {
-    // Récupérer l'ID de l'article depuis l'ID du formulaire en découpant l'id en tableau et en prenant l'index 1
-    const articleId = form.getAttribute("id").split("_")[1];
+    addReviewForms.forEach((form) => {
+      // Récupérer l'ID d du projet depuis l'ID du formulaire en découpant l'id en tableau et en prenant l'index 1
+      const projectId = form.getAttribute("id").split("_")[1];
 
-    // Sélection des boutons associés à cet article
-    const addReviewBtn = document.querySelector(`#addReviewBtn_${articleId}`);
-    const closeAddReviewBtn = document.querySelector(
-      `#closeAddReviewBtn_${articleId}`
-    );
+      // Sélection des boutons associés à ce projet
+      const addReviewBtn = document.querySelector(
+        `${addReviewBtnId}${projectId}`
+      );
+      const closeAddReviewBtn = document.querySelector(
+        `${closeAddReviewBtnId}${projectId}`
+      );
 
-    // Ajout des écouteurs d'événements
-    addReviewBtn.addEventListener("click", () => {
-      form.style.display = "block";
-      addReviewBtn.style.display = "none";
-      closeAddReviewBtn.style.display = "block";
+      // Ajout des écouteurs d'événements
+      addReviewBtn.addEventListener("click", () => {
+        form.style.display = "block";
+        addReviewBtn.style.display = "none";
+        closeAddReviewBtn.style.removeProperty("display");
+      });
+
+      closeAddReviewBtn.addEventListener("click", () => {
+        form.style.display = "none";
+        closeAddReviewBtn.style.display = "none";
+        addReviewBtn.style.removeProperty("display");
+      });
     });
-
-    closeAddReviewBtn.addEventListener("click", () => {
-      form.style.display = "none";
-      closeAddReviewBtn.style.display = "none";
-      addReviewBtn.style.display = "block";
-    });
-  });
+  }
 }

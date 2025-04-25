@@ -1,16 +1,23 @@
 <?php
 class LogoutController
 {
-
     public function logout()
     {
-        if ((isset($_SESSION['connected'])) && isset($_SESSION['firstName'])) {
-            unset($_SESSION['connected'], $_SESSION['firstName']);
-        }
-        if (isset($_SESSION['admin'])) {
-            unset($_SESSION['admin']);
+        // Détruit toutes les variables de session
+        $_SESSION = array();
+
+        // Détruit le cookie de session
+        if (isset($_COOKIE[session_name()])) {
+            setcookie(session_name(), '', time() - 3600, '/');
         }
 
+        // Détruit la session
+        session_destroy();
+
+        // Supprime le cookie d'auto-login
+        setcookie('autoLogin', '', time() - 3600, '/');
+
+        // Redirection vers la page d'accueil
         header('location:accueil');
         exit();
     }
