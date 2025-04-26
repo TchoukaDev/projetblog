@@ -23,7 +23,7 @@
                     <input class="form-control mx-auto w-100 w-md-75 w-lg-50 signUpInput" type="password" name="password2" id="password2" required placeholder="Confirmer le mot de passe">
                 </p>
                 <p>
-                    <input class="btn btn-outline-light mt-4" type="submit" value="S'inscrire">
+                    <input class="btn btn-outline-light mt-4" type="submit" value="Valider l'Inscription">
                 </p>
             <?php endif;
 
