@@ -78,7 +78,7 @@ class ProjectsController extends PageController
                     exit();
                 } else {
                     //Si article supprimé, on supprime tous les commentaires associés de la db
-                    $reviewsModel = new ReviewsModel('project_reviews', "projectid");
+                    $reviewsModel = new ReviewsModel('project_reviews', "project_id");
                     $reviewsModel->deleteAllReviewsDb($id);
                     $_SESSION['projectsSuccess'] = "Votre projet a été supprimé avec succès.";
                     header("location:" . ROOT . "portfolio");

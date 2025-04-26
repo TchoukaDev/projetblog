@@ -24,30 +24,27 @@
                     <p class="text-center"><button type=" submit" class="btn btn-outline-light">Publier l'article</button></p>
         </form>
 
-        <!-- Notifications -->
-        <?php
-        if (isset($_SESSION["articlesError"])) {
-            echo "<p class='text-danger text-center py-3'>" . $_SESSION['articlesError'] . "</p>";
-            unset($_SESSION['articlesError']);
-        }
-        if (isset($_SESSION['articlesSuccess'])) {
-            echo "<p class='text-success text-center py-3'>" . $_SESSION['articlesSuccess'] . "</p>";
-            unset($_SESSION['articlesSuccess']);
-        }
-        if (isset($_SESSION["reviewsError"])) {
-            echo "<p class='text-danger text-center py-3'>" . $_SESSION['reviewsError'] . "</p>";
-            unset($_SESSION['reviewsError']);
-        }
-        if (isset($_SESSION['reviewsSuccess'])) {
-            echo "<p class='text-success text-center py-3'>" . $_SESSION['reviewsSuccess'] . "</p>";
-            unset($_SESSION['reviewsSuccess']);
-        }
-        ?>
-
 
     <?php endif;
 
+    // Notifications
 
+    if (isset($_SESSION["articlesError"])) {
+        echo "<p class='text-danger text-center py-3'>" . $_SESSION['articlesError'] . "</p>";
+        unset($_SESSION['articlesError']);
+    }
+    if (isset($_SESSION['articlesSuccess'])) {
+        echo "<p class='text-success text-center py-3'>" . $_SESSION['articlesSuccess'] . "</p>";
+        unset($_SESSION['articlesSuccess']);
+    }
+    if (isset($_SESSION["reviewsError"])) {
+        echo "<p class='text-danger text-center py-3'>" . $_SESSION['reviewsError'] . "</p>";
+        unset($_SESSION['reviewsError']);
+    }
+    if (isset($_SESSION['reviewsSuccess'])) {
+        echo "<p class='text-success text-center py-3'>" . $_SESSION['reviewsSuccess'] . "</p>";
+        unset($_SESSION['reviewsSuccess']);
+    }
 
     foreach ($articles as $article):
 

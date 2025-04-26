@@ -6,7 +6,7 @@
     <p>Pour accéder à mon blog et voir mes différents articles, vous pouvez vous rendre <a class="link-light fw-bold" href="blog">ici</a>. N'hésitez pas à vous connecter et à laisser un commentaire si vous le souhaitez.</p>
 
 
-    <p>Et pour avoir un aperçu de quelques projes que j'ai réalisés, rendez-vous <a class="link-light fw-bold" href="portfolio">ici</a>.</p>
+    <p>Et pour avoir un aperçu de quelques projets que j'ai réalisés, rendez-vous <a class="link-light fw-bold" href="portfolio">ici</a>.</p>
 
     <p>Bonne visite!</p>
 
