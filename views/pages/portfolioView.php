@@ -1,6 +1,6 @@
 <main class=" container mb-5" id="addProjectLink">
     <div class="d-flex justify-content-center mb-5 mt-2">
-        <h2 class="bg-main p-4 rounded-pill w-50 text-center border border-light">Mes projets</h2>
+        <h2 class="bg-main p-4 rounded-pill w-50 text-center border border-light mt-5">Mes projets</h2>
     </div>
     <!--Formulaire d'ajout de projet -->
     <?php
@@ -103,7 +103,7 @@
 
                         </div>
                         <p class="text-center">
-                            <a class="link-light" href="<?= $project['link'] ?>">Lien du projet ici</a>
+                            <a class="link-light" href="<?= $project['link'] ?> " target="_blank">Lien du projet ici</a>
                         </p>
                     </div>
                     <?php
@@ -190,8 +190,9 @@
                     </div>
                     <!-- Boutons d'ouverture de textarea pour ajouter un commentaire -->
                     <div class="text-center">
-                        <button type="button" class="btn btn-lightuielement m-3" id="addProjectReviewBtn_<?= $project['id'] ?>">Ajouter un commentaire</button>
-
+                        <?php if (isset($_SESSION['connected'])): ?>
+                            <button type="button" class="btn btn-lightuielement m-3" id="addProjectReviewBtn_<?= $project['id'] ?>">Ajouter un commentaire</button>
+                        <?php endif; ?>
                         <button type="button" class="btn btn-outline-light m-3" data-bs-toggle="modal" data-bs-target="#allProjectReviewsModal<?= $project['id'] ?>">Voir tous les commentaires (<?= count($projectReviews) ?>)</button>
                     </div>
 
@@ -221,14 +222,17 @@
 
 
     <?php
-    endforeach; ?>
+    endforeach;
+    if (isset($_SESSION['admin'])):
+    ?>
 
-    <!-- Bouton d'ouverture textearea pour ajout d'un projet -->
+        <!-- Bouton d'ouverture textearea pour ajout d'un projet -->
 
-    <div class="container mt-5 sticky-bottom text-end" id="divAddProjectBtn">
-        <button type="button" class="btn btn-lightuielement m-3 " id="addProjectBtn">Ajouter un projet</button>
-    </div>
+        <div class="container mt-5 sticky-bottom text-end" id="divAddProjectBtn">
+            <button type="button" class="btn btn-lightuielement m-3 " id="addProjectBtn">Ajouter un projet</button>
+        </div>
     <?php
+    endif;
 
     echo $deleteProjectModal;
     echo $deleteProjectReviewModal;

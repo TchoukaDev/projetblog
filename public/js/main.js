@@ -1,5 +1,4 @@
-import {} from "./article.js";
-import { Content } from "./project.js";
+import { Content } from "./content.js";
 import { Review } from "./review.js";
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -1,5 +1,6 @@
 <?php
 require_once 'models/ArticlesModel.php';
+require_once 'models/ReviewsModel.php';
 class ArticlesController extends PageController
 {
 
@@ -61,6 +62,9 @@ class ArticlesController extends PageController
                     header("location:" . ROOT . "blog");
                     exit();
                 } else {
+                    //Si article supprimé, on supprime tous les commentaires associés de la db
+                    $reviewsModel = new ReviewsModel('article_reviews', "article_id");
+                    $reviewsModel->deleteAllReviewsDb($id);
                     $_SESSION['articlesSuccess'] = "Votre article a été supprimé avec succès.";
                     header("location:" . ROOT . "blog");
                     exit();

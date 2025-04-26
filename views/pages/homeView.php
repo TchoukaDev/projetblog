@@ -1,5 +1,5 @@
 <section class="container shadowlight border border-lightuielement mt-5 p-5 bg-main rounded-4 fs-5 ">
-    <h2 class="text-center mb-5 text-decoration-underline">Bienvenue sur mon site!</h2>
+    <h2 class="text-center my-5 text-decoration-underline">Bienvenue sur mon site!</h2>
     <p>Je m'appelle Romain WIRTH et je suis actuellement une formation avec Believemy pour me reconvertir comme développeur Web.
         Ici vous pourrez retrouver mes quelques uns de mes projets réalisés ainsi que différentes informations me concernant.</p>
 

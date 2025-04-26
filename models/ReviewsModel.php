@@ -43,4 +43,11 @@ class ReviewsModel extends PdoModel
         $result = $req->execute([$id]);
         return $result;
     }
+    public function deleteAllReviewsDb($contentId)
+    {
+        $db = $this->setdb();
+        $req = $db->prepare("DELETE FROM $this->table where $this->idColumn = ?");
+        $result = $req->execute([$contentId]);
+        return $result;
+    }
 }

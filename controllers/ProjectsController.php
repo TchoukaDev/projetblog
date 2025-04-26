@@ -1,5 +1,6 @@
 <?php
 require_once 'models/ProjectsModel.php';
+require_once 'models/ReviewsModel.php';
 
 class ProjectsController extends PageController
 {
@@ -76,6 +77,9 @@ class ProjectsController extends PageController
                     header("location:" . ROOT . "portfolio");
                     exit();
                 } else {
+                    //Si article supprimé, on supprime tous les commentaires associés de la db
+                    $reviewsModel = new ReviewsModel('project_reviews', "projectid");
+                    $reviewsModel->deleteAllReviewsDb($id);
                     $_SESSION['projectsSuccess'] = "Votre projet a été supprimé avec succès.";
                     header("location:" . ROOT . "portfolio");
                     exit();
